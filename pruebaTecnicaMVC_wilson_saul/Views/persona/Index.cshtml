@@ -1,0 +1,88 @@
+﻿@model IEnumerable<pruebaTecnicaMVC_wilson_saul.Models.Persona>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div style="padding:2rem 0;">
+    <h3>Ir a: </h3>
+    <br />
+    <ul style="display:flex;list-style:none;gap:1rem;padding:0;">
+        <li><a href="~/persona/index" style="display: block; border: 1px solid royalblue;border-radius:5px; color: royalblue; padding: 1rem;">Mantenimiento de personas</a></li>
+        <li><a href="~/documento/index" style="display: block; background-color: royalblue; border-radius: 5px; color: white; padding: 1rem; ">Mantenimiento de documento</a></li>
+    </ul>
+</div>
+
+<h2>Listado de personas</h2>
+
+<div style="padding:0 0 2rem 0;">
+       <a href="~/persona/crearPersona" class="btn btn-primary">Agregar persona</a>
+</div>
+<table class="table table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoDocumento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApellidoPaterno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApellidoMaterno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Registro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nacimiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NroDocumento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sueldo)
+        </th>
+        <th>
+            Acciones
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoDocumento.Abreviatura)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApellidoPaterno)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApellidoMaterno)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Registro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nacimiento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NroDocumento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sueldo)
+        </td>
+        <td style="display:flex;gap:0.2rem;">
+            @Html.ActionLink("Detalle", "PersonaDetalle", new { id = item.Id }, new { @class = "btn btn-success" })
+            @Html.ActionLink("Editar", "EditarPersona", new { id = item.Id }, new { @class = "btn btn-warning" })
+            @Html.ActionLink("Eliminar", "EliminarPersona", new { id = item.Id }, new { @class = "btn btn-danger" })
+        </td>
+
+    </tr>
+}
+
+</table>
